@@ -2,9 +2,9 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# =========================
+
 # 1. PAGE CONFIG & THEME
-# =========================
+
 
 st.set_page_config(
     page_title="Karnataka Assembly 2023 – Election Analytics",
@@ -34,9 +34,7 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# =========================
 # 2. LOAD DATA
-# =========================
 
 CSV_FILE_NAME = "karnataka_assembly_2023.csv"
 
@@ -88,9 +86,7 @@ color_map = {
     "Others": "#7F7F7F",
 }
 
-# =========================
 # 3. SIDEBAR & FILTERS
-# =========================
 
 st.sidebar.title("🗳️ Karnataka 2023 Analytics")
 st.sidebar.markdown("Constituency-wise analysis of the **2023 Assembly result**.")
@@ -138,9 +134,7 @@ if filtered_df.empty:
     st.error("No data matches the current filters. Relax the filters in the sidebar.")
     st.stop()
 
-# =========================
 # 4. AGGREGATIONS
-# =========================
 
 party_counts_state = df["Winner"].value_counts().sort_index()
 total_seats_state = len(df)
@@ -150,9 +144,7 @@ winner_party_state = party_counts_state.idxmax()
 party_counts_filtered = filtered_df["Winner"].value_counts().sort_index()
 total_seats_filtered = len(filtered_df)
 
-# =========================
 # 5. VIEWS
-# =========================
 
 if view_mode == "Executive Summary":
     st.title("🛡️ Executive Summary: Karnataka Mandate 2023")
@@ -352,3 +344,4 @@ elif view_mode == "Constituency Analysis":
         file_name="karnataka_2023_filtered_view.csv",
         mime="text/csv",
     )
+
